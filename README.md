@@ -42,37 +42,43 @@ doesn't send anywhere. Easiest options once you're ready:
 - **Formspree** (https://formspree.io) — free tier, no backend needed.
   Just change the form's `action` to your Formspree endpoint and add
   `method="POST"`.
-- **A Vercel serverless function** — more control, more setup, useful if
-  you later want to store submissions or trigger other automation.
+- **A serverless function** (Vercel, Netlify, etc.) — more control, more
+  setup, useful if you later want to store submissions or trigger other
+  automation.
 
-## Deploying to Vercel
+## Deployed on GitHub Pages
 
-The code is already pushed to GitHub:
+The site is live on GitHub Pages, deployed straight from this repo:
 https://github.com/ahmedrehanbutt/apollo-university-advisors
 
-1. Go to https://vercel.com and sign in (choosing "Continue with GitHub"
-   is easiest since it's the same `ahmedrehanbutt` account).
-2. Click **Add New → Project**, and import the
-   `apollo-university-advisors` repo.
-3. Framework preset: choose **Other** (it's a static site — no build
-   command or output directory needed).
-4. Deploy. You'll get a temporary `*.vercel.app` URL to confirm it works.
+- Pages is enabled to build from the `master` branch, root path — every
+  push to `master` redeploys automatically.
+- Default URL: https://ahmedrehanbutt.github.io/apollo-university-advisors/
+- A `CNAME` file at the repo root tells GitHub Pages the custom domain is
+  `apollouniversityadvisors.com`.
 
-## Pointing www.apollouniversityadvisors.com at Vercel
+## Pointing www.apollouniversityadvisors.com at GitHub Pages
 
-1. In the Vercel project, go to **Settings → Domains** and add
-   `apollouniversityadvisors.com` and `www.apollouniversityadvisors.com`.
-2. Vercel will show you DNS records to add at your domain registrar
-   (wherever you bought the domain). Typically:
-   - An **A record** for the root domain pointing to Vercel's IP, or
-   - A **CNAME record** for `www` pointing to `cname.vercel-dns.com`
-   (Vercel shows the exact values for your specific domain — use those.)
-3. Add those records in your registrar's DNS settings.
-4. Decide whether `apollouniversityadvisors.com` or
-   `www.apollouniversityadvisors.com` should be the primary (Vercel lets
-   you redirect one to the other automatically).
-5. DNS changes can take anywhere from a few minutes to ~24 hours to
-   propagate.
+DNS still needs to be configured at your domain registrar (wherever you
+bought the domain) — this is the one step that requires your own login,
+since it's outside GitHub:
+
+1. For the **apex domain** (`apollouniversityadvisors.com`), add four
+   **A records** (all with the host/name left as `@` or blank) pointing to:
+   ```
+   185.199.108.153
+   185.199.109.153
+   185.199.110.153
+   185.199.111.153
+   ```
+2. For the **www subdomain**, add a **CNAME record**:
+   ```
+   www  →  ahmedrehanbutt.github.io
+   ```
+3. Back in the GitHub repo's **Settings → Pages**, once DNS has propagated,
+   check **Enforce HTTPS** (GitHub provisions a free SSL certificate
+   automatically once it can verify the domain — this can take anywhere
+   from a few minutes to ~24 hours after DNS is added).
 
 ## Suggested next steps beyond the site itself
 
