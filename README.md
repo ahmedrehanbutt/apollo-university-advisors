@@ -47,16 +47,13 @@ doesn't send anywhere. Easiest options once you're ready:
 
 ## Deploying to Vercel
 
-1. Push this folder to a GitHub repository (Vercel deploys from Git):
-   ```
-   git init
-   git add .
-   git commit -m "Initial site"
-   git remote add origin <your-empty-github-repo-url>
-   git push -u origin main
-   ```
-2. Go to https://vercel.com, sign in, click **Add New → Project**, and
-   import that GitHub repo.
+The code is already pushed to GitHub:
+https://github.com/ahmedrehanbutt/apollo-university-advisors
+
+1. Go to https://vercel.com and sign in (choosing "Continue with GitHub"
+   is easiest since it's the same `ahmedrehanbutt` account).
+2. Click **Add New → Project**, and import the
+   `apollo-university-advisors` repo.
 3. Framework preset: choose **Other** (it's a static site — no build
    command or output directory needed).
 4. Deploy. You'll get a temporary `*.vercel.app` URL to confirm it works.
